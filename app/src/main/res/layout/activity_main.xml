@@ -10,9 +10,6 @@
         <variable
             name="operationSpinnerAdapter"
             type="android.widget.ArrayAdapter" />
-        <variable
-            name="runClick"
-            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -53,11 +50,6 @@
                 android:layout_marginEnd="20dp"
 
                 />
-            <Button
-                android:onClick="@{runClick}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RUN"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

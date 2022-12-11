@@ -21,20 +21,14 @@ class MainActivity : AppCompatActivity(){
 
     lateinit var adapter: NfcAdapter
     lateinit var binding: ActivityMainBinding
-    var operationList : MutableList<String> = mutableListOf()
+    var operationList : MutableList<Pair<String,String>> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.logs = ""
-        operationList.add("CreditCard")
+        operationList.add(Pair("CreditCard","asd"))
         binding.operationSpinnerAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,operationList)
-
-        binding.runClick = View.OnClickListener {
-
-
-
-        }
 
         adapter = NfcAdapter.getDefaultAdapter(this)
 
