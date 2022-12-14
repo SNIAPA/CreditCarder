@@ -54,19 +54,81 @@ class MainActivity : AppCompatActivity(){
 
         if (techlist.contains("IsoDep")){
 
-            val commands = arrayOf(
+            val commands = mutableListOf(
                 arrayOf(
 
-                    //root 0x00, 0xA4,0x04,0x00,0x00
-                    0x00, 0xA4, 0x04, 0x00,0x06,0xD2,0x76,0x00,0x01,0x24,0x01,0x00
-                    // 2pay 0x00,0xA4,0x04,0x00,0x0e,0x32,0x50,0x41,0x59,0x2e,0x53,0x59,0x53,0x2e,0x44,0x44,0x46,0x30,0x31,0x00
-                ).toByteArray(),
-                arrayOf(
-                    0x00,0xCA,0x00,0x65,0x00
+                    // 0x00, 0xA4,0x04,0x00,0x00
+                    // OpenPgp not working tho
+                    // 0x00, 0xA4, 0x04, 0x00,0x06,0xD2,0x76,0x00,0x01,0x24,0x01,0x00
+                    // 2pay                    0x00,0xA4,0x04,0x00,0x0e,0x32,0x50,0x41,0x59,0x2e,0x53,0x59,0x53,0x2e,0x44,0x44,0x46,0x30,0x31,0x00
+                    //0x00,0xa4,0x04,0x00,0x08,0xA0,0x00,0x00,0x00,0x03,0x00,0x00,0x00 ,0x00
+                    //visa classic
+                    0x00, 0xA4,0x04,0x00,0x07,0xA0,0x00,0x00,0x00,0x03,0x10,0x10,0x00
                 ).toByteArray(),
             )
 
-            val commandSequence = CommandSequence(commands,::log)
+            val readAllRecords = arrayOf(
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x5F, 0x35 ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x5F, 0x53 ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x00, 0xDE ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x7f, 0x21 ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x00, 0x6e ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x00, 0x65 ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x00, 0x7a ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x7f, 0x77 ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x00, 0x5e ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x5f, 0x50 ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x00, 0x4f ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x7f, 0x74 ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x00, 0xF9 ,0x00
+                ).toByteArray(),
+                arrayOf(
+                    //read applidation related data
+                    0x80,0xCA,0x00, 0xfa ,0x00
+                ).toByteArray(),
+            )
+
+            commands.addAll(readAllRecords)
+
+            val commandSequence = CommandSequence(commands.toTypedArray(),::log)
             commandSequence.execute(IsoDep.get(tag))
 
         }
