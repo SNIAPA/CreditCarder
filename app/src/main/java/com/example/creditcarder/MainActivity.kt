@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity(){
             val commands = mutableListOf(
                 arrayOf(
 
+                    //root file?
                     // 0x00, 0xA4,0x04,0x00,0x00
                     // OpenPgp not working tho
                     // 0x00, 0xA4, 0x04, 0x00,0x06,0xD2,0x76,0x00,0x01,0x24,0x01,0x00
@@ -70,60 +71,60 @@ class MainActivity : AppCompatActivity(){
             val readAllRecords = arrayOf(
                 arrayOf(
                     //read applidation related data
-                    0x80,0xCA,0x5F, 0x35 ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x5F, 0x53 ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x00, 0xDE ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x7f, 0x21 ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
                     0x80,0xCA,0x00, 0x6e ,0x00
                 ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x00, 0x65 ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x00, 0x7a ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x7f, 0x77 ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x00, 0x5e ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x5f, 0x50 ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x00, 0x4f ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x7f, 0x74 ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x00, 0xF9 ,0x00
-                ).toByteArray(),
-                arrayOf(
-                    //read applidation related data
-                    0x80,0xCA,0x00, 0xfa ,0x00
-                ).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x5F, 0x53 ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x00, 0xDE ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x7f, 0x21 ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x00, 0x6e ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x00, 0x65 ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x00, 0x7a ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x7f, 0x77 ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x00, 0x5e ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x5f, 0x50 ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x00, 0x4f ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x7f, 0x74 ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x00, 0xF9 ,0x00
+              //).toByteArray(),
+              //arrayOf(
+              //    //read applidation related data
+              //    0x80,0xCA,0x00, 0xfa ,0x00
+              //).toByteArray(),
             )
 
             commands.addAll(readAllRecords)
