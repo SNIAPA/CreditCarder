@@ -58,11 +58,13 @@ class MainActivity : AppCompatActivity(){
             val card = TechWrapper(IsoDep.get(tag),::log)
 
 
-            val fci = card.select(AIDS[0])
+            val fci = card.select(AIDS[2])
             //get processing options
-            card.transceive(arrayOf(0x80,0xa8,0x00,0x00,fci.PDOL.size).toByteArray() + fci.PDOL[0].first + 0x00.toByte())
-            //card.transceive(arrayOf(0x84,0x32,0x00,0x00,0x03,,0x00).toByteArray())
-            //card.transceive(arrayOf(0x00,0xb2).toByteArray())
+            if(fci!= null){
+                //card.transceive(arrayOf(0x80,0xa8,0x00,0x00,fci.PDOL.size).toByteArray() + fci.PDOL[0].first + 0x00.toByte())
+                //card.transceive(arrayOf(0x84,0x32,0x00,0x00,0x03,,0x00).toByteArray())
+                //card.transceive(arrayOf(0x00,0xb2).toByteArray())
+            }
 
 
 

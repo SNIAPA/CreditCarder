@@ -6,10 +6,17 @@ import com.example.creditcarder.dataStructures.FCI
 
 class TechWrapper(val tech: IsoDep,val log:(message:String)->Unit) {
 
-    fun select(aid:ByteArray):FCI {
-        val fci = FCI(transceive(arrayOf(0x00,0xa4,0x04,0x00,aid.size).toByteArray()+aid+0x00.toByte()))
-        log("fci: $fci")
-        return  fci
+    fun select(aid:ByteArray):FCI? {
+        val ans = transceive(arrayOf(0x00,0xa4,0x04,0x00,aid.size).toByteArray()+aid+0x00.toByte())
+        try {
+            val fci = FCI(ans)
+            log("fci: $fci")
+            return  fci
+        }catch (e: java.lang.AssertionError){
+            log("could not parse fci response")
+            log(ans.toHexString())
+        }
+        return  null
     }
 
 

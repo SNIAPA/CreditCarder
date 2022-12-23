@@ -5,52 +5,39 @@ import com.example.creditcarder.*
 
 class FCI {
 
-    val DFName: ByteArray
-    val label: String
-    val priority:Byte
-    val language:Array<String>
-    val PDOL: List<Pair<ByteArray,Int>>
+    var tags: MutableList<DO> = mutableListOf()
+
+    private fun add(reader:ByteArrayDOReader, tag: Int): ByteArray{return  add(reader, arrayOf(tag))}
+    private fun add(reader:ByteArrayDOReader, tag: Array<Int>): ByteArray{
+        val dO = reader.readDO(tag.toByteArray())
+        tags.add(dO)
+        return dO.value
+    }
+
 
     constructor(bytes: ByteArray){
 
-        with(ByteArrayDOReader(bytes)){
+        Log.d("FCI", bytes.toHexString())
 
-            assert(nextOne() == 0x6f.toByte())
-            Log.d("fci",nextSize(true).toHexString())
-            var size = nextOne()
-            assert(nextOne() == 0x84.toByte())
-            DFName = nextSize()
-            assert(nextOne() == 0xa5.toByte())
-            with(ByteArrayDOReader(nextSize())){
-                assert(nextOne() == 0x50.toByte())
-                label = nextSize().toAsciString()
-                assert(nextOne() == 0x87.toByte())
-                priority = nextSize()[0]
-                assert(next(2).contentEquals(arrayOf(0x5f,0x2d).toByteArray()))
-                language = nextSize().toAsciString().chunked(2).toTypedArray()
-                assert(next(2).contentEquals(arrayOf(0x9f,0x38).toByteArray()))
-                PDOL = nextSize().toList().chunked(3).map {it-> Pair(it.slice(IntRange(0,1)).toByteArray(), it.last().toInt() ) }
-                assert(next(2).contentEquals(arrayOf(0xBF,0x0C).toByteArray()))
-                with(nextSize()){
-                    //proprietary shit
-                }
+        var reader = ByteArrayDOReader(bytes)
 
-            }
+        reader = ByteArrayDOReader(add(reader,0x6f))
+        add(reader,0x84)
+        reader = ByteArrayDOReader(add(reader,0xa5))
+        reader = ByteArrayDOReader(add(reader, arrayOf(0xbf,0x0c)))
+        reader = ByteArrayDOReader(add(reader, 0x61))
+        add(reader,0x4f)
+        add(reader,0x50)
+        add(reader,0x87)
+        add(reader,arrayOf(0x9f,0x0a))
 
 
-        }
     }
 
     override fun toString(): String {
 
-        var ans = "{\n"
 
-        ans += "\tAID: %s\n".format(DFName.toHexString())
-        ans += "\tLABEL: %s\n".format(label)
-        ans += "\tPRIORITY: %s\n".format(priority.toBinString())
-        ans += "\tLANG: %s\n".format(language.joinToString(","))
-        ans += "\tPDOL: %s\n".format(PDOL.toString())
-        return "$ans}"
+        return tags.joinToString("\n\n") { "${it.tag.toHexString()} => ${it.value.toHexString()}" }
 
     }
 }

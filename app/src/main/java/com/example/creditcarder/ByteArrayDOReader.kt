@@ -1,5 +1,8 @@
 package com.example.creditcarder
 
+import android.util.Log
+import com.example.creditcarder.dataStructures.DO
+
 class ByteArrayDOReader(var byteArray: ByteArray) {
 
 
@@ -11,12 +14,24 @@ class ByteArrayDOReader(var byteArray: ByteArray) {
         return ans
     }
 
-    fun nextOne(): Byte{
-        return next(1)[0]
+    fun nextOne(peek: Boolean = false): Byte{
+        return next(1, peek)[0]
     }
 
     fun nextSize(peek: Boolean = false): ByteArray{
         return  next(nextOne().toInt(),peek)
     }
 
+    fun readDO(tag:ByteArray): DO{
+
+        if(!next(tag.size).contentEquals(tag)){
+            throw java.lang.Error("invalid tag")
+        }
+
+        return DO(tag,nextOne(true).toInt(),nextSize())
+    }
+
+    fun readDO(tag:Byte): DO{
+        return readDO(byteArrayOf(tag))
+    }
 }

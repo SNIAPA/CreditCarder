@@ -1,6 +1,6 @@
 package com.example.creditcarder
 
-fun ByteArray.toHexString(): String = joinToString(separator = "") { eachByte -> "%02x".format(eachByte) }
+fun ByteArray.toHexString(): String = joinToString(separator = " ") { eachByte -> "%02x".format(eachByte) }
 fun ByteArray.toAsciString(): String = String(this)
 
 fun Byte.toHesString():String = "%02x".format(this)
